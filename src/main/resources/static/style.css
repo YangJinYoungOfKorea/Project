@@ -1,0 +1,44 @@
+
+* {margin: 0;
+    padding: 0;
+}
+/* 로그인 페이지 */
+
+#load{
+    z-index: 2;
+}
+.map{
+    max-height: 95vh;
+}
+.rounded-4 { border-radius: .5rem; }
+.rounded-5 { border-radius: .75rem; }
+.rounded-6 { border-radius: 1rem; }
+.modal-sheet .modal-dialog {
+    transition: bottom .75s ease-in-out;
+}
+.form-login {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    width: 100%;
+    max-width: 380px;
+    min-height: 550px;
+    margin: auto;
+}
+.form-login input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.form-login input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.main-name{
+    backgroundcolor: #333;
+}
+.form-control{
+    width: 40vh;
+    left: auto;
+}

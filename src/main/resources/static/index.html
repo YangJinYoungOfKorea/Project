@@ -2,9 +2,314 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <title>메인화면</title>
+    <!--BootStrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
+    <!--네이버 API-->
+    <script type="text/javascript" src="https://openapi.map.naver.com/openapi/v3/maps.js?ncpClientId=fnp5m4pcvw"></script>
+    <!--css 스타일 시트-->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <!-- 로딩 스크립트 -->
+    <script>
+        $(window).load(function () {
+            $('#load').fadeOut(1000);
+        });
+    </script>
 </head>
 <body>
+<!-- 로그인 페이지(모달) -->
+<!--  <button type="button" data-bs-toggle="modal" data-bs-target="#modalLogin">Launch modal</button> -->
+<div class="modal fade" id="modalLogin" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content rounded-5 shadow">
+            <div class="modal-header p-5 pb-4 border-bottom-0 ">
+            </div>
+            <div class="modal-body p-5 pt-0">
+                <form>
+                    <h1 class="h3 mb-3 fw-normal">Welcome</h1>
+                    <div class="form-floating mb-3">
+                        <input type="email" class="form-control rounded-5" id="floatingInput"
+                               placeholder="name@example.com">
+                        <label for="floatingInput">Email</label>
+                    </div>
+                    <div class="form-floating mb-3 ">
+                        <input type="password" class="form-control rounded-5" id="floatingPassword"
+                               placeholder="Password">
+                        <label for="floatingPassword">Password</label>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button class="w-100 btn btn-lg btn-primary rounded-5" type="submit">Login</button>
+                        <button class="w-100 btn btn-lg btn-primary rounded-5" type="button" onclick="location.href='Checking.html'">회원 가입</button>
+                    </div>
+                    <span class='text-center float-end'><a href="" class=" text-sm">비밀번호 찾기</a></span>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <p class="mt-5 mb-3 text-muted">CopyWrite IOT-Team</p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 상단 네비게이션 바 -->
+<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+        <h1 class="navbar-brand display-2" href="#">서비스이름</h1>
+        <p class="navbar-brand h3">OOO님</p>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav me-auto justify-content-end">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#">예약확인</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">마이페이지</a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" id="dropdown07" href="#" role="button"
+                       aria-expanded="false">지도필터</a>
+                    <ul class="dropdown-menu text-light bg-dark" aria-labelledby="dropdown07">
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">카페</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">식당</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked0" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">예약</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked1" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">포장</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked2" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">영업중</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked3" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">영업종료</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked4" checked>
+                                </div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <div class="form-check form-switch ms-2">
+                                    <label class="form-check-label" for="flexSwitchCheckChecked">전체 선택/해제</label>
+                                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked5" checked>
+                                </div>
+                            </li>
+                        </ul>
+                </li>
+            </ul>
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="주소 또는 업체명" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </div>
+</nav>
 
+<!-- 로딩 -->
+<div id="load" class="position-fixed top-0 end-0 text-primary">
+    <strong>Loading...</strong>
+    <div class="spinner-border ms-auto" role="status" aria-hidden="true"></div>
+</div>
+<!--지도-->
+<div id="map" style="width:100%;height:100vh;"></div>
+<!--JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<script>
+    <!--맵의옵션-->
+    var mapOptions = {
+        zoom: 10,
+        zoomControl: true,
+        mapDataControl: true,
+        mapDataControlOptions: {
+            position: naver.maps.Position.BOTTOM_LEFT
+        },
+        center: new naver.maps.LatLng(37.46369647421375, 126.68177102613878),
+        zoom: 12,
+        zoomControl: true,
+        zoomControlOptions: {
+            position: naver.maps.Position.LEFT_CENTER
+        },
+        mapTypeControl:true,
+        mapTypeControlOptions:{
+            style: naver.maps.MapTypeControlStyle.BUTTON,
+            position: naver.maps.Position.BOTTOM_LEFT
+        },
+        mapTypeId: naver.maps.MapTypeId.NORMAL
+    };
+    <!--맵생성-->
+    var map = new naver.maps.Map('map',mapOptions);
+    var position = new naver.maps.LatLng(37.46369647421375, 126.68177102613878);
+    <!--GPS-->
+    /* 위치 추적 및 현재 위치 가운데 셋팅*/
+    // 정보 창 옵션(x) var infowindow = new naver.maps.InfoWindow();
+    function onSuccessGeolocation(position) {
+        var location = new naver.maps.LatLng(position.coords.latitude, position.coords.longitude); // 포지션 받아서 set
+        map.setCenter(location); // 얻은 좌표를 지도의 중심으로 설정합니다.
+        var marker0 = new naver.maps.Marker(markerOptions0); // 현재위치 마커 생성
+        marker0.setPosition(map.getCenter()); // 현재위치 셋
+        //정보 창 옵션(x) infowindow.setContent('현재 위치');
+        //정보 창 옵션(x) infowindow.open(map, location);
+    }
+    //error시 디폴트값
+    function onErrorGeolocation() {
+        var center = map.getCenter();
+        infowindow.setContent('<div style="padding:20px;">' +
+            '<h5 style="margin-bottom:5px;color:#f00;">Geolocation failed!</h5>' + "latitude: " + center.lat() +
+            "<br />longitude: " + center.lng() + '</div>');
+        infowindow.open(map, center);
+    }
+    $(window).on("load", function () {
+        if (navigator.geolocation) {
+            /**
+             * navigator.geolocation 은 Chrome 50 버젼 이후로 HTTP 환경에서 사용이 Deprecate 되어 HTTPS 환경에서만 사용 가능 합니다.
+             * http://localhost 에서는 사용이 가능하며, 테스트 목적으로, Chrome 의 바로가기를 만들어서 아래와 같이 설정하면 접속은 가능합니다.
+             * chrome.exe --unsafely-treat-insecure-origin-as-secure="http://example.com"
+             */
+            navigator.geolocation.getCurrentPosition(onSuccessGeolocation, onErrorGeolocation);
+        } else {
+            var center = map.getCenter();
+            infowindow.setContent(
+                '<div style="padding:20px;"><h5 style="margin-bottom:5px;color:#f00;">Geolocation not supported</h5></div>'
+            );
+            infowindow.open(map, center);
+        }
+    });
+    /* 마커 옵션 0 현위치 */
+    var markerOptions0 = {
+        map: map,
+        icon: {
+            url: './GPS4.png',
+            scaledSize: new naver.maps.Size(30, 30),
+        }
+    };
+    <!--마커 옵션-->
+    var markerOptions = {
+        position:position,
+        map: map,
+        icon: {
+            url:'./food.png',
+            scaledSize:new naver.maps.Size(40,40)
+        }
+    };
+    <!--정보창 안에 내용-->
+    var contentString = [
+        '<div class="iw_inner">',
+        '   <h3>인천직업능력개발원</h3>',
+        '   <p>인천광역시 미추홀구 주안로 108 (주안동,경향프라자)13층 1302호<br />',
+        '       <img src="./ICI.PNG" width="55" height="55" alt="인천직업능력개발원" class="thumb" /><br />',
+        '       상담전화 032-256-1000 <br />',
+        '       <a href="http://ici.ac/html/" target="_blank">http://ici.ac/html/</a>',
+        '   </p>',
+        '</div>'
+    ].join('');
+    <!--뺵다방-->
+    var position2 = new naver.maps.LatLng(37.4638727327495, 126.68065236667887);
+    var markerOptions2 = {
+        position:position2,
+        map:map,
+        icon: {
+            url: './Coffee.png',
+            scaledSize: new naver.maps.Size(40,40)
+        }
+    }
+    var contentString2 = [
+        '<div class="iw_inner2">',
+        ' <img src="./Baek.jpg" width="100%" height="50" alt="백다방로고" class="thumb" />  ',
+        '<h3>빽다방</h3>',
+        '   <p>인천광역시 남구 주안1동 141-1<br />',
+        '       <br />',
+        '       +82324234262 <br />',
+        '       <a href="http://ici.ac/html/" target="_blank">http://ici.ac/html/</a>',
+        '   </p>',
+        '</div>',
+        '<div><h6>메뉴를 선택해주세요.</h6></div>'
+            ].join('');
+    var infowindow2 = new naver.maps.InfoWindow({
+        content: contentString2,
+        maxWidth: 140,
+        backgroundColor: "#eee",
+        borderColor: "#0066FF",
+        borderWidth: 5,
+        anchorSize: new naver.maps.Size(60, 60),
+        anchorSkew: true,
+        anchorColor: "#eee",
+        pixelOffset: new naver.maps.Point(20, -20)
+    });
+    <!--마커생성-->
+    var marker = new naver.maps.Marker(markerOptions);
+    var marker2 = new naver.maps.Marker(markerOptions2);
+    <!--백다방-->
+    naver.maps.Event.addListener(marker2,"click",function (e){
+        if(infowindow2.getMap()){
+            infowindow2.close();
+        }else {
+            infowindow2.open(map,marker2);
+        }
+    });
+    <!--마커정보창의 옵션-->
+    var infowindow = new naver.maps.InfoWindow({
+        content: contentString,
+        maxWidth: 140,
+        backgroundColor: "#eee",
+        borderColor: "#0066FF",
+        borderWidth: 5,
+        anchorSize: new naver.maps.Size(60, 60),
+        anchorSkew: true,
+        anchorColor: "#eee",
+        pixelOffset: new naver.maps.Point(20, -20)
+    });
+    <!--마커 클릭시 정보출력하게 하는 함수-->
+    naver.maps.Event.addListener(marker,"click",function (e){
+        if(infowindow.getMap()){
+            infowindow.close();
+        }else {
+            infowindow.open(map,marker);
+        }
+    });
+</script>
+<!-- **맵의 스크립트 부분** -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+<!-- 모달-->
+<script>
+    var myModal = new bootstrap.Modal(document.getElementById("modalLogin"), {});
+    document.onreadystatechange = function () {
+        myModal.show();
+    };
+</script>
 </body>
 </html>
